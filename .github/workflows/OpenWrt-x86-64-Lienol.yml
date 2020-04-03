@@ -38,7 +38,7 @@ on:
 env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: dev-19.07
-  DIY_SH: OpenWrt-x86-64.sh
+  DIY_SH: OpenWrt-x86-64-Lienol.sh
   FREE_UP_DISK: false
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
@@ -115,7 +115,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt_bin
+        name: OpenWrt_bin_Lienol
         path: openwrt/bin
 
     - name: 整理文件
@@ -130,5 +130,5 @@ jobs:
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_firmware
+        name: OpenWrt_firmware_Lienol
         path: ./artifact/
