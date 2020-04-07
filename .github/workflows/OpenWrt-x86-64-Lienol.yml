@@ -30,7 +30,6 @@ on:
 #  paths:
 #    - 'x86_64.config'
 
-#FREE_UP_DISK 释放磁盘空间
 #SSH_ACTIONS 开启SSH连接
 #UPLOAD_BIN_DIR上传BIN目录
 #UPLOAD_FIRMWARE上传固件目录
@@ -39,7 +38,6 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: dev-19.07
   DIY_SH: OpenWrt-x86-64-Lienol.sh
-  FREE_UP_DISK: false
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
