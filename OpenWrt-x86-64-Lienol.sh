@@ -10,7 +10,7 @@
 # 添加第三方软件包
 git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/vernesong/OpenClash package/openclash
-git clone https://github.com/kang-mk/luci-app-serverchan package/luci-app-serverchan
+git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/kang-mk/luci-app-smartinfo package/luci-app-smartinfo
 
 # 自定义定制选项
