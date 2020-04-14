@@ -200,6 +200,11 @@ CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_wget=y
 EOF
 
+# 其他软件包:
+cat >> .config <<EOF
+CONFIG_PACKAGE_zram-swap=y
+EOF
+
 # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
 cat >> .config <<EOF
 # CONFIG_TARGET_IMAGES_PAD is not set
