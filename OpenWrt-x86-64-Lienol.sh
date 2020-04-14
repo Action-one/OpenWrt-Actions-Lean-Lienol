@@ -9,7 +9,7 @@
 
 # 添加第三方软件包
 git clone https://github.com/vernesong/OpenClash package/openclash
-git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
+git clone https://github.com/kang-mk/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/kang-mk/luci-app-smartinfo package/luci-app-smartinfo
 
 # 自定义定制选项
@@ -108,7 +108,7 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
+CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 # CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 # CONFIG_PACKAGE_luci-app-smartinfo=y #磁盘健康监控
