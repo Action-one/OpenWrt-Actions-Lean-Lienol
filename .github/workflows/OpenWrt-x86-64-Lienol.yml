@@ -10,8 +10,8 @@ name: OpenWrt-x86-64-Lienol
 
 on:
 # 定时触发(每天早4点)
-  schedule:
-    - cron: 0 20 * * *
+#  schedule:
+#    - cron: 0 20 * * *
 
 # release触发
   release:
