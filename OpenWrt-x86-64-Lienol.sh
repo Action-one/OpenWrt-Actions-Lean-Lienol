@@ -1,16 +1,18 @@
 
 #!/bin/bash
-#=================================================
-# Description: DIY script
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
+
+# 更新并安装源
+cd openwrt
+# sed -i 's#lienol https://github.com/Lienol/openwrt-package#lienol https://github.com/kang-mk/openwrt-package#g' feeds.conf.default #更换默认包源
+cat feeds.conf.default
+./scripts/feeds clean
+./scripts/feeds update -a && ./scripts/feeds install -a
 
 # 添加第三方软件包
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/kang-mk/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/kang-mk/luci-app-smartinfo package/luci-app-smartinfo
+git clone https://github.com/kang-mk/luci-app-passwall package/luci-app-passwall
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
@@ -238,207 +240,12 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_node=y
 EOF
 
-# 存储和网络驱动:
-cat >> .config <<EOF
-# 存储驱动
-CONFIG_PACKAGE_kmod-ata-core=y
-CONFIG_PACKAGE_kmod-ata-ahci=y
-CONFIG_PACKAGE_kmod-ata-artop=y
-CONFIG_PACKAGE_kmod-ata-marvell-sata=y
-CONFIG_PACKAGE_kmod-ata-nvidia-sata=y
-CONFIG_PACKAGE_kmod-ata-pdc202xx-old=y
-CONFIG_PACKAGE_kmod-ata-piix=y
-CONFIG_PACKAGE_kmod-ata-sil=y
-CONFIG_PACKAGE_kmod-ata-sil24=y
-CONFIG_PACKAGE_kmod-ata-via-sata=y
-CONFIG_PACKAGE_kmod-scsi-core=y
-# 网络驱动
-CONFIG_PACKAGE_kmod-3c59x=y
-CONFIG_PACKAGE_kmod-8139cp=y
-CONFIG_PACKAGE_kmod-8139too=y
-CONFIG_PACKAGE_kmod-atl1=y
-CONFIG_PACKAGE_kmod-atl1c=y
-CONFIG_PACKAGE_kmod-atl1e=y
-CONFIG_PACKAGE_kmod-atl2=y
-CONFIG_PACKAGE_kmod-b44=y
-CONFIG_PACKAGE_kmod-be2net=y
-CONFIG_PACKAGE_kmod-bnx2=y
-CONFIG_PACKAGE_kmod-dm9000=y
-CONFIG_PACKAGE_kmod-dummy=y
-CONFIG_PACKAGE_kmod-e100=y
-CONFIG_PACKAGE_kmod-e1000=y
-CONFIG_PACKAGE_kmod-e1000e=y
-CONFIG_PACKAGE_kmod-et131x=y
-CONFIG_PACKAGE_kmod-ethoc=y
-CONFIG_PACKAGE_kmod-forcedeth=y
-CONFIG_PACKAGE_kmod-gigaset=y
-CONFIG_PACKAGE_kmod-hfcmulti=y
-CONFIG_PACKAGE_kmod-hfcpci=y
-CONFIG_PACKAGE_kmod-ifb=y
-CONFIG_PACKAGE_kmod-igb=y
-CONFIG_PACKAGE_kmod-igbvf=y
-CONFIG_PACKAGE_kmod-ixgbe=y
-CONFIG_PACKAGE_kmod-ixgbevf=y
-CONFIG_PACKAGE_kmod-libphy=y
-CONFIG_PACKAGE_kmod-macvlan=y
-CONFIG_PACKAGE_kmod-mdio-gpio=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_kmod-natsemi=y
-CONFIG_PACKAGE_kmod-ne2k-pci=y
-CONFIG_PACKAGE_kmod-niu=y
-CONFIG_PACKAGE_kmod-of-mdio=y
-CONFIG_PACKAGE_kmod-pcnet32=y
-CONFIG_PACKAGE_kmod-phy-broadcom=y
-CONFIG_PACKAGE_kmod-phy-realtek=y
-CONFIG_PACKAGE_kmod-phylib-broadcom=y
-CONFIG_PACKAGE_kmod-r6040=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-r8169=y
-CONFIG_PACKAGE_kmod-siit=y
-CONFIG_PACKAGE_kmod-sis190=y
-CONFIG_PACKAGE_kmod-sis900=y
-CONFIG_PACKAGE_kmod-skge=y
-CONFIG_PACKAGE_kmod-sky2=y
-CONFIG_PACKAGE_kmod-solos-pci=y
-CONFIG_PACKAGE_kmod-spi-ks8995=y
-CONFIG_PACKAGE_kmod-swconfig=y
-CONFIG_PACKAGE_kmod-switch-ip17xx=y
-CONFIG_PACKAGE_kmod-switch-mvsw61xx=y
-CONFIG_PACKAGE_kmod-switch-rtl8306=y
-CONFIG_PACKAGE_kmod-switch-rtl8366-smi=y
-CONFIG_PACKAGE_kmod-switch-rtl8366rb=y
-CONFIG_PACKAGE_kmod-switch-rtl8366s=y
-CONFIG_PACKAGE_kmod-switch-rtl8367b=y
-CONFIG_PACKAGE_kmod-tg3=y
-CONFIG_PACKAGE_kmod-tulip=y
-CONFIG_PACKAGE_kmod-via-rhine=y
-CONFIG_PACKAGE_kmod-via-velocity=y
-CONFIG_PACKAGE_kmod-vmxnet3=y
-# USB设备支持
-CONFIG_PACKAGE_kmod-usb-core=y
-CONFIG_PACKAGE_kmod-usb-hid=y
-CONFIG_PACKAGE_kmod-usb-net=y
-CONFIG_PACKAGE_kmod-usb-net-asix=y
-CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
-CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
-CONFIG_PACKAGE_kmod-usb-net-hso=y
-CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_kmod-usb-net-kalmia=y
-CONFIG_PACKAGE_kmod-usb-net-kaweth=y
-CONFIG_PACKAGE_kmod-usb-net-mcs7830=y
-CONFIG_PACKAGE_kmod-usb-net-pegasus=y
-CONFIG_PACKAGE_kmod-usb-net-pl=y
-CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
-CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
-CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
-CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
-CONFIG_PACKAGE_kmod-usb-net-smsc95xx=y
-CONFIG_PACKAGE_kmod-usb-net-sr9700=y
-CONFIG_PACKAGE_kmod-usb-wdm=y
-EOF
-
 # 其他软件包:
 cat >> .config <<EOF
 CONFIG_HAS_FPU=y
 CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_kmod-zram=y
 CONFIG_PACKAGE_zram-swap=y
-# Crypto
-CONFIG_PACKAGE_kmod-crypto-acompress=y
-CONFIG_PACKAGE_kmod-crypto-aead=y
-CONFIG_PACKAGE_kmod-crypto-authenc=y
-CONFIG_PACKAGE_kmod-crypto-cbc=y
-CONFIG_PACKAGE_kmod-crypto-crc32=y
-CONFIG_PACKAGE_kmod-crypto-crc32c=y
-CONFIG_PACKAGE_kmod-crypto-deflate=y
-CONFIG_PACKAGE_kmod-crypto-des=y
-CONFIG_PACKAGE_kmod-crypto-ecb=y
-CONFIG_PACKAGE_kmod-crypto-echainiv=y
-CONFIG_PACKAGE_kmod-crypto-gf128=y
-CONFIG_PACKAGE_kmod-crypto-hash=y
-CONFIG_PACKAGE_kmod-crypto-hmac=y
-CONFIG_PACKAGE_kmod-crypto-iv=y
-CONFIG_PACKAGE_kmod-crypto-manager=y
-CONFIG_PACKAGE_kmod-crypto-md5=y
-CONFIG_PACKAGE_kmod-crypto-misc=y
-CONFIG_PACKAGE_kmod-crypto-null=y
-CONFIG_PACKAGE_kmod-crypto-pcompress=y
-CONFIG_PACKAGE_kmod-crypto-rng=y
-CONFIG_PACKAGE_kmod-crypto-sha1=y
-CONFIG_PACKAGE_kmod-crypto-sha256=y
-CONFIG_PACKAGE_kmod-crypto-wq=y
-CONFIG_PACKAGE_kmod-crypto-xts=y
-# Python库
-CONFIG_PACKAGE_python=y
-CONFIG_PACKAGE_python-base=y
-CONFIG_PACKAGE_python-codecs=y
-CONFIG_PACKAGE_python-compiler=y
-CONFIG_PACKAGE_python-ctypes=y
-CONFIG_PACKAGE_python-db=y
-CONFIG_PACKAGE_python-decimal=y
-CONFIG_PACKAGE_python-distutils=y
-CONFIG_PACKAGE_python-gdbm=y
-CONFIG_PACKAGE_python-light=y
-CONFIG_PACKAGE_python-logging=y
-CONFIG_PACKAGE_python-ncurses=y
-CONFIG_PACKAGE_python-openssl=y
-CONFIG_PACKAGE_python-pydoc=y
-CONFIG_PACKAGE_python-sqlite3=y
-CONFIG_PACKAGE_python-unittest=y
-CONFIG_PACKAGE_python-xml=y
-# .
-CONFIG_PACKAGE_luci-lib-json=y
-CONFIG_PACKAGE_luci-lib-jsonc=y
-CONFIG_PACKAGE_luci-mod-rpc=y
-CONFIG_PACKAGE_cgi-io=y
-CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
-CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
-CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
-CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-CONFIG_PACKAGE_ddns-scripts_route53-v1=y
-CONFIG_PACKAGE_iperf3=y
-CONFIG_PACKAGE_kmod-ipsec=y
-CONFIG_PACKAGE_kmod-ipsec4=y
-CONFIG_PACKAGE_kmod-ipsec6=y
-CONFIG_PACKAGE_kmod-ipt-extra=y
-CONFIG_PACKAGE_kmod-ipt-ipsec=y
-CONFIG_PACKAGE_kmod-ipt-ipset=y
-CONFIG_PACKAGE_iptables-mod-ipsec=y
-CONFIG_PACKAGE_kmod-isdn4linux=y
-CONFIG_PACKAGE_kmod-mdio=y
-CONFIG_PACKAGE_kmod-misdn=y
-CONFIG_PACKAGE_kmod-gre=y
-CONFIG_PACKAGE_kmod-iptunnel6=y
-CONFIG_PACKAGE_kmod-lib-lz4=y
-CONFIG_PACKAGE_kmod-lib-lzo=y
-CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
-CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
-CONFIG_PACKAGE_kmod-macvlan=y
-CONFIG_PACKAGE_kmod-mppe=y
-CONFIG_PACKAGE_kmod-nft-core=y
-CONFIG_PACKAGE_kmod-nft-netdev=y
-CONFIG_PACKAGE_e100-firmware=y
-CONFIG_PACKAGE_libbz2=y
-CONFIG_PACKAGE_libdb47=y
-CONFIG_PACKAGE_libexpat=y
-CONFIG_PACKAGE_libfreetype=y
-CONFIG_PACKAGE_libgdbm=y
-CONFIG_PACKAGE_libminiupnpc=y
-CONFIG_PACKAGE_libnatpmp=y
-CONFIG_PACKAGE_libnftnl=y
-CONFIG_PACKAGE_libvorbis=y
-CONFIG_PACKAGE_nft-qos=y
-CONFIG_PACKAGE_nftables=y
-CONFIG_PACKAGE_zoneinfo-asia=y
-CONFIG_PACKAGE_rpcd-mod-file=y
-CONFIG_PACKAGE_rpcd-mod-iwinfo=y
 EOF
 
 # 
