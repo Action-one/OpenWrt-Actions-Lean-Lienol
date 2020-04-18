@@ -1,11 +1,12 @@
   
 #!/bin/bash
-#=================================================
-# Description: DIY script
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
+
+# 更新并安装源
+cd openwrt
+sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default #启用helloworld
+cat feeds.conf.default
+./scripts/feeds clean
+./scripts/feeds update -a && ./scripts/feeds install -a
 
 # 替换默认Argon主题（最新版本适配好像有问题,暂取消）
 # rm -rf package/lean/luci-theme-argon && git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
@@ -125,9 +126,9 @@ EOF
 
 # ShadowsocksR插件:
 cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 EOF
 
