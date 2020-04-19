@@ -63,7 +63,7 @@ jobs:
     - name: 克隆源代码
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: 创建自定义配置文件 - OpenWrt-x86-64
+    - name: 更新源并创建配置文件
       run: |
         [ -e files ] && mv files openwrt/files
         chmod +x $DIY_SH
