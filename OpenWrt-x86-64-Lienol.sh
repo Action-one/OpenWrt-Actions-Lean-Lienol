@@ -22,10 +22,10 @@ sed -i 's#option commit_interval 24h#option commit_interval 10m#g' feeds/package
 sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 
 # luci-app-haproxy定制项
-sed -i 's#o.default = "admin"#o.default = ""#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #去除haproxy默认密码(最新版已无密码)
-sed -i 's#1188#1111#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #修改haproxy默认管理端口
-sed -i 's#1181#2222#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #修改haproxy默认负载均衡端口
-sed -i 's#1188#1111#g' package/luci-app-passwall/po/zh-cn/passwall.po #修改haproxy默认管理端口
+# sed -i 's#o.default = "admin"#o.default = ""#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #去除haproxy默认密码(最新版已无密码)
+# sed -i 's#1188#1111#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #修改haproxy默认管理端口
+# sed -i 's#1181#2222#g' package/luci-app-passwall/luasrc/model/cbi/passwall/haproxy.lua #修改haproxy默认负载均衡端口
+# sed -i 's#1188#1111#g' package/luci-app-passwall/po/zh-cn/passwall.po #修改haproxy默认管理端口
 
 # 创建自定义配置文件 - OpenWrt-x86-64
 
