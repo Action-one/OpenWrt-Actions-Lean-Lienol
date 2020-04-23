@@ -3,7 +3,7 @@
 
 # 更新并安装源
 cd openwrt
-# sed -i 's#lienol https://github.com/Lienol/openwrt-package#lienol https://github.com/kang-mk/openwrt-package#g' feeds.conf.default #更换默认包源
+# sed -i 's#lienol https://github.com/Lienol/openwrt-package#lienol https://github.com/kang-mk/Lienol-openwrt-package#g' feeds.conf.default #更换默认包源
 cat feeds.conf.default
 ./scripts/feeds clean
 ./scripts/feeds update -a && ./scripts/feeds install -a
@@ -11,8 +11,8 @@ cat feeds.conf.default
 # 添加第三方软件包
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
-git clone https://github.com/kang-mk/luci-app-smartinfo package/luci-app-smartinfo
-git clone https://github.com/kang-mk/luci-app-passwall package/luci-app-passwall
+svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-smartinfo package/luci-app-smartinfo
+svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-passwall package/luci-app-passwall
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
