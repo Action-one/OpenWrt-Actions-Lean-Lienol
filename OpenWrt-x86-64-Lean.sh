@@ -1,10 +1,12 @@
   
 #!/bin/bash
 
-# 更新并安装源
+# feeds文件编辑
 cd openwrt
-# sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default #启用helloworld
+sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default #启用helloworld
 cat feeds.conf.default
+
+# 更新并安装源
 ./scripts/feeds clean
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
@@ -14,7 +16,7 @@ cat feeds.conf.default
 rm -rf feeds/packages/net/haproxy && svn co https://github.com/kang-mk/openwrt-app-package/trunk/haproxy feeds/packages/net/haproxy
 
 # 添加第三方软件包
-svn co https://github.com/kang-mk/openwrt-app-package/trunk/helloworld package/helloworld
+# svn co https://github.com/kang-mk/openwrt-app-package/trunk/helloworld package/helloworld
 git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
