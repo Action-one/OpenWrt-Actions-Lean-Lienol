@@ -64,9 +64,12 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: 更新源并创建配置文件
+    - name: 生成编译时间
       run: |
         echo "::set-env name=FILENAME::$(date "+%Y_%m_%d_%H_%M_%S")"
+
+    - name: 更新源并创建配置文件
+      run: |
         [ -e files ] && mv files openwrt/files
         chmod +x $DIY_SH
         cd openwrt
