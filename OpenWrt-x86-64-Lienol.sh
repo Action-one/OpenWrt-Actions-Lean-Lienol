@@ -190,6 +190,7 @@ CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 # CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
+# CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
 #
 # passwall相关(禁用):
 #
@@ -197,7 +198,6 @@ CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 # VPN相关插件(禁用):
 #
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
-# CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
 # CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
 # CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
 # CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set #PPTP VPN 服务器
