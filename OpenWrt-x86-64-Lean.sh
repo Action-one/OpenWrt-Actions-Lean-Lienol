@@ -22,6 +22,7 @@ git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
+git clone https://github.com/garypang13/luci-app-eqos package/luci-app-eqos
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
@@ -135,6 +136,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 # CONFIG_PACKAGE_luci-app-openclash=y #OpenClash
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
+CONFIG_PACKAGE_luci-app-eqos=y #IP限速
 # CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardhome
 # CONFIG_PACKAGE_luci-app-smartinfo=y #磁盘健康监控
 EOF
@@ -160,8 +162,6 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-airplay2 is not set #Apple AirPlay2音频接收服务器
 # CONFIG_PACKAGE_luci-app-music-remote-center is not set #PCHiFi数字转盘遥控
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
-# CONFIG_PACKAGE_luci-app-usb-cpufreq is not set #CPU频率设置
-# CONFIG_PACKAGE_luci-app-usb-diskman is not set #磁盘分区管理
 #
 # VPN相关插件(禁用):
 #
@@ -197,6 +197,7 @@ CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
 CONFIG_PACKAGE_luci-app-haproxy-tcp=y #Haproxy负载均衡
 CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
+CONFIG_PACKAGE_luci-app-diskman=y #磁盘分区管理
 EOF
 
 # LuCI主题:
