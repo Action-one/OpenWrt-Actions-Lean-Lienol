@@ -1,7 +1,10 @@
   
 #!/bin/bash
 
-# feeds文件编辑
+# 安装额外依赖软件包
+sudo -E apt-get -y install rename
+
+# 更新feeds文件
 cd openwrt
 sed -i 's@#src-git helloworld@src-git helloworld@g' feeds.conf.default #启用helloworld
 cat feeds.conf.default
@@ -23,6 +26,9 @@ git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
 git clone https://github.com/garypang13/luci-app-eqos package/luci-app-eqos
+
+# 更改eqos语言包目录
+find package/luci-app-eqos/ -maxdepth 2 -depth -name "zh_Hans" | xargs -i rename -v 's/zh_Hans/zh-cn/' {}
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
@@ -149,7 +155,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 EOF
 
-# 常用LuCI插件(禁用):
+# 常用LuCI插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
 CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
