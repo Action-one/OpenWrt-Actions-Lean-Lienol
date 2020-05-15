@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # 安装额外依赖软件包
-sudo -E apt-get -y install rename
+# sudo -E apt-get -y install rename
 
 # 更新feeds文件
 cd openwrt
@@ -16,12 +16,8 @@ cat feeds.conf.default
 # 添加第三方软件包
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
-svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-smartinfo package/luci-app-smartinfo
 svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-passwall package/luci-app-passwall
-git clone https://github.com/garypang13/luci-app-eqos package/luci-app-eqos
-
-# 更改eqos语言包目录
-find package/luci-app-eqos/ -maxdepth 2 -depth -name "zh_Hans" | xargs -i rename -v 's/zh_Hans/zh-cn/' {}
+svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-eqos package/luci-app-eqos
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
@@ -128,7 +124,6 @@ CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 # CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-eqos=y #IP限速
-# CONFIG_PACKAGE_luci-app-smartinfo=y #磁盘健康监控
 EOF
 
 # Passwall插件:
@@ -184,7 +179,7 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=y #访问限制
 CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
-# CONFIG_PACKAGE_luci-app-diskman is not set #磁盘分区管理
+# CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲

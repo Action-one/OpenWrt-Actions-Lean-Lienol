@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # 安装额外依赖软件包
-sudo -E apt-get -y install rename
+# sudo -E apt-get -y install rename
 
 # 更新feeds文件
 cd openwrt
@@ -20,15 +20,11 @@ cat feeds.conf.default
 
 # 添加第三方软件包
 # svn co https://github.com/kang-mk/openwrt-app-package/trunk/helloworld package/helloworld
-svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-smartinfo package/luci-app-smartinfo
 git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/vernesong/OpenClash package/openclash
 git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
 git clone https://github.com/rufengsuixing/luci-app-adguardhome package/luci-app-adguardhome
-git clone https://github.com/garypang13/luci-app-eqos package/luci-app-eqos
-
-# 更改eqos语言包目录
-find package/luci-app-eqos/ -maxdepth 2 -depth -name "zh_Hans" | xargs -i rename -v 's/zh_Hans/zh-cn/' {}
+svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-eqos package/luci-app-eqos
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
@@ -144,7 +140,6 @@ CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-eqos=y #IP限速
 # CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardhome
-# CONFIG_PACKAGE_luci-app-smartinfo=y #磁盘健康监控
 EOF
 
 # ShadowsocksR插件:
@@ -172,7 +167,7 @@ CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
 CONFIG_PACKAGE_luci-app-haproxy-tcp=y #Haproxy负载均衡
 CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
-# CONFIG_PACKAGE_luci-app-diskman is not set #磁盘分区管理
+# CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
 # CONFIG_PACKAGE_luci-app-transmission is not set #TR离线下载
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set #QB离线下载
 # CONFIG_PACKAGE_luci-app-amule is not set #电驴离线下载
