@@ -123,7 +123,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-# CONFIG_PACKAGE_luci-app-eqos=y #IP限速
+CONFIG_PACKAGE_luci-app-eqos=y #IP限速
 EOF
 
 # Passwall插件:
