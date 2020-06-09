@@ -15,13 +15,13 @@ on:
 #    types: [started]
 
 # 编辑触发
-#  push:
-#    branches: 
-#      - master
+  push:
+    branches: 
+      - master
 
 # config触发
-#  paths:
-#    - 'x86_64.config'
+  paths:
+    - 'x86_64.config'
 
 #SSH_ACTIONS 开启SSH连接
 #UPLOAD_BIN_DIR上传BIN目录
