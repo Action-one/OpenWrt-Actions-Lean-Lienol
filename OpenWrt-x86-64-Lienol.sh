@@ -20,7 +20,7 @@ svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-passwall pa
 svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-eqos package/luci-app-eqos
 
 # 自定义定制选项
-sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
+# sed -i 's#192.168.1.1#10.0.0.1#g' package/base-files/files/bin/config_generate #定制默认IP
 sed -i 's#max-width:200px#max-width:1000px#g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm #修改首页样式
 sed -i 's#max-width:200px#max-width:1000px#g' feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index_x86.htm #修改X86首页样式
 sed -i 's#option commit_interval 24h#option commit_interval 10m#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
@@ -73,8 +73,8 @@ touch ./.config
 # 编译x64固件:
 cat >> .config <<EOF
 CONFIG_TARGET_x86=y
-CONFIG_TARGET_x86_64=y
-CONFIG_TARGET_x86_64_Generic=y
+CONFIG_TARGET_x86_64=n
+CONFIG_TARGET_x86_64_Generic=n
 EOF
 
 # 设置固件大小:
@@ -90,7 +90,7 @@ EOF
 
 # 编译UEFI固件:
 cat >> .config <<EOF
-CONFIG_EFI_IMAGES=y
+CONFIG_EFI_IMAGES=n
 EOF
 
 # IPv6支持:
@@ -120,10 +120,10 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
-# CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
+# CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
+CONFIG_PACKAGE_luci-app-openclash=y #OpenClash客户端
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-eqos=y #IP限速
+# CONFIG_PACKAGE_luci-app-eqos=y #IP限速
 EOF
 
 # Passwall插件:
@@ -162,26 +162,26 @@ EOF
 
 # 常用LuCI插件:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
-CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+# CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
+# CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
+# CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
-CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
-CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
-CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
-CONFIG_PACKAGE_luci-app-control-mia=y #时间控制
-CONFIG_PACKAGE_luci-app-control-timewol=y #定时唤醒
-CONFIG_PACKAGE_luci-app-control-webrestriction=y #访问限制
-CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
+# CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
+# CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
+# CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
+# CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
+# CONFIG_PACKAGE_luci-app-control-mia=y #时间控制
+# CONFIG_PACKAGE_luci-app-control-timewol=y #定时唤醒
+# CONFIG_PACKAGE_luci-app-control-webrestriction=y #访问限制
+# CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
+# CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 # CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
-# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
-# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
+CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
+CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-unblockneteasemusic-go is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini is not set #解锁网易云灰色歌曲
